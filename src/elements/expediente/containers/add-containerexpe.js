@@ -43,7 +43,7 @@ export const AddExpediente = (props) => {
             fecha_Nacimiento:fecha_Nacimiento,
             error: "",
         }
-        console.log(body),
+        console.log(body);
         fetch(`${URL_API}/Expediente`, {
             method: !idExpediente ?'POST':'PUT',
             headers: { 'Content-Type':  'application/json; charset=UTF-8', 'Accept': '*/*'}, 
