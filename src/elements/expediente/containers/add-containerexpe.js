@@ -4,7 +4,7 @@ import Form from './../components/form';
 
 const URL_API = process.env.REACT_APP_URL_API || "https://localhost:44353/api";
 
-export const AddExpediente = (props) => {
+export const AddExpediente = () => {
 
     const {idExpediente} = useParams();
     
