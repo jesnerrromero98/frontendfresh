@@ -1,10 +1,6 @@
 import React from 'react';
 import TableComponent from './../../theme/components/table';
 
-const sample = [
-    ['Frozen yoghurt', 159, 6.0, 24, 4.0,90,23,45],
-];
-
 export const List = (props) => {
     const {data} = props;
     <button>Guardar</button>
