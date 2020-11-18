@@ -17,14 +17,25 @@ export const ListMedico = (props) => {
                 },
                 {
                 width: 150,
-                label: 'NombreMedico',
-                dataKey: 'nombre_Medico',
+                label: 'Nombre Medico',
+                dataKey: 'nombreMedico',
             },
             {
                 width: 150,
                 label: 'Telefono_Celular',
                 dataKey: 'telefono_Celular',
                 numeric: true,
+            },
+
+            {
+                width: 100,
+                label: 'Id Especialidad',
+                dataKey: 'idEspecialidad',
+            },
+            {
+                width: 150,
+                label: 'Nombre Especialidad',
+                dataKey: 'nombreEspecialidad',
             },
             
             ]}

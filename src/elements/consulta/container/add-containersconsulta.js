@@ -20,11 +20,18 @@ export const AddConsulta= (props) => {
     const [diagnostico, setDiagnostico] = useState('');
     const handleChangeDiagnostico = (e) => setDiagnostico(e.target.value);
 
-    const [nombres_Paciente, setPaciente] = useState('');
+    const [nombres, setPaciente] = useState('');
     const handleChangePaciente = (e) =>setPaciente(e.target.value);
     
     const [nombreMedico, setMedico] = useState('');
     const handleChangeMedico = (e) =>setMedico(e.target.value);
+    
+    const [idExpediente, setExpediente] = useState('');
+    const handleChangeIdExped = (e) =>setExpediente(e.target.value);
+
+    
+    const [idMedico, setidmedico] = useState('');
+    const handleChangeidmedico = (e) =>setidmedico(e.target.value);
 
 
     const handleClickGuardar = () => {
@@ -35,8 +42,10 @@ export const AddConsulta= (props) => {
             hora: hora,
             sintoma:sintoma,
             diagnostico:diagnostico,   
-            nombres_Paciente:nombres_Paciente,
+            nombres:nombres,
             nombreMedico:nombreMedico,
+            idExpediente: Number(idExpediente),
+            idMedico: Number(idMedico),
             error: "",
         };
         console.log(body);
@@ -93,11 +102,17 @@ export const AddConsulta= (props) => {
             diagnostico={diagnostico}
             onChangeDiagnostico={handleChangeDiagnostico}
 
-            nombres_Paciente={nombres_Paciente}
+            nombres={nombres}
             onChangePaciente={handleChangePaciente}
 
             nombreMedico={nombreMedico}
             onChangeMedico={handleChangeMedico}
+
+            idExpediente={idExpediente}
+            onChangeIdexped={handleChangeIdExped}
+
+            idMedico={idMedico}
+            onChangeIdmedico={handleChangeidmedico}
                      
             onClickGuardar={handleClickGuardar}
             onClickEliminar={idConsulta ? handleClickEliminar : null}

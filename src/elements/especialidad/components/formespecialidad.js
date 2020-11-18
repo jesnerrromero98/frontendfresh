@@ -27,19 +27,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Formedico(props) {
+export default function Formespec(props) {
 
   const {
     onClickEliminar,
     accion,
-    nombre,
-    onChangeNombre,
-    telefono,
-    onChangeTelefono,
     nombreEspecialidad,
-    idEspecialidad,
-    onchangeIdespec,
-    onChangenombrespc,
+    onChangeNombrespec,
+    descpEspecialidad,
+    onChangedescespec,
     onClickGuardar,
   } = props;
     
@@ -51,48 +47,6 @@ export default function Formedico(props) {
         <h1>{accion}</h1>
       <div>
         <TextField
-          id="nombre_Medico"
-          label="NombreMedico:"
-          style={{ margin: 8 }}
-          placeholder="Nombre"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-          value={nombre}
-          onChange={onChangeNombre}
-        />
-         <TextField
-          id="telefono_Celular"
-          label="Telefono_Celular:"
-          style={{ margin: 8 }}
-          placeholder="telefono_celular"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-          value={telefono}
-          onChange={onChangeTelefono}
-     />   
-     <TextField
-          id="idEspecialidad"
-          label="Id Especialidad"
-          style={{ margin: 8 }}
-          placeholder="Id Especialidad"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-          value={idEspecialidad}
-          onChange={onchangeIdespec}
-        />
-     <TextField
           id="nombreEspecialidad"
           label="Nombre Especialidad:"
           style={{ margin: 8 }}
@@ -104,8 +58,22 @@ export default function Formedico(props) {
           }}
           variant="filled"
           value={nombreEspecialidad}
-          onChange={onChangenombrespc}
+          onChange={onChangeNombrespec}
         />
+         <TextField
+          id="descpEspecialidad"
+          label="Descripcion Especialidad:"
+          style={{ margin: 8 }}
+          placeholder="Descripcion Especialidad"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="filled"
+          value={descpEspecialidad}
+          onChange={onChangedescespec}
+     />   
     </div>
     <div className={clas.root}>
       <Button
@@ -116,7 +84,7 @@ export default function Formedico(props) {
         Agregar
       </Button>
       <Link
-          to="/medico"
+          to="/especialidad"
           component={Button}
           variant="contained"
           color="secondary"

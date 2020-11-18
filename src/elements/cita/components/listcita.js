@@ -2,50 +2,50 @@ import React from 'react';
 import TableComponent from './../../theme/components/table';
 
 
-export const ListConsulta = (props) => {
+export const ListCita = (props) => {
     const {data} = props;
     <button>Guardar</button>
     return (
         <TableComponent 
-             id='idConsulta'
-             editUrlBase='/consulta/editar/'
+             id='idCita'
+             editUrlBase='/cita/editar/'
              style={{ height: 400, width: '100%' }}
              rows={data}
             columns={[
                 {
                     width: 100,
-                    label: 'IdConsulta',
-                    dataKey: 'idConsulta',
+                    label: 'IdCita',
+                    dataKey: 'idCita',
                 },
                 {
                 width: 200,
-                label: 'Fecha',
-                dataKey: 'fecha',
+                label: 'fecha Cita',
+                dataKey: 'fechaCita',
                 numeric: true,
             },
             {
                 width: 200,
-                label: 'Hora',
-                dataKey: 'hora',
+                label: 'Hora Cita',
+                dataKey: 'horaDisponible',
                 numeric: true,
                 
             },
             {
                 width: 200,
-                label: 'Sintoma',
-                dataKey: 'sintoma',
+                label: 'Precio',
+                dataKey: 'precio',
                 numeric: true,
             },
             {
                 width: 200,
-                label: 'Diagnostico',
-                dataKey: 'diagnostico',
+                label: 'Tipo',
+                dataKey: 'tipo',
                 numeric: true,
             },
             {
-                width: 150,
-                label: ' Id Expediente',
-                dataKey: 'idMedico',
+                width: 200,
+                label: 'Idexpediente',
+                dataKey: 'idExpediente',
                 numeric: true,
             },
             {
@@ -56,7 +56,7 @@ export const ListConsulta = (props) => {
             },
             {
                 width: 150,
-                label: ' Id Medico',
+                label: 'IdMedico',
                 dataKey: 'idMedico',
                 numeric: true,
             },
@@ -67,8 +67,9 @@ export const ListConsulta = (props) => {
                 numeric: true,
             },
            
+            
             ]}
         />
     );
 };
-export default ListConsulta;
+export default ListCita;

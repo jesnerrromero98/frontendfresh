@@ -12,7 +12,10 @@ import {AddExpediente} from '../elements/expediente/containers/add-containerexpe
 import {AddMedicoContainer} from '../elements/medico/containers/add-container';
 import {AddReceta} from '../elements/receta/containersreceta/add-containereceta';
 import {AddConsulta} from '../elements/consulta/container/add-containersconsulta';
-
+import { Cita } from '../pages/Cita';
+import {AddCita} from '../elements/cita/containers/add-containerscita';
+import { Especialidad} from '../pages/especialidad';
+import {AddEspec} from '../elements/especialidad/containers/add-containeresp';
 
 export const ClientsRoute = () => {
     return (
@@ -30,6 +33,12 @@ export const ClientsRoute = () => {
                 <Route path='/consulta' exact component={Consulta} />
                 <Route path='/consulta/agregar' exact component={AddConsulta} />
                 <Route path='/consulta/editar/:idConsulta' exact component={AddConsulta} />
+                <Route path='/cita' exact component={Cita} />
+                <Route path='/cita/agregar' exact component={AddCita} />
+                <Route path='/cita/editar/:idCita' exact component={AddCita} />
+                <Route path='/especialidad' exact component={Especialidad} />
+                <Route path='/especialidad/agregar' exact component={AddEspec} />
+                <Route path='/especialidad/editar/:idEspecialidad' exact component={AddEspec} />
             </Switch>
         </Router>
     );

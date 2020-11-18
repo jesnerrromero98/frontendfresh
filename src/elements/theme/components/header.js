@@ -86,12 +86,16 @@ export const Header = () => {
               <Link to="/"  component={Button}>
                 Expedientes
               </Link>
-              
+              <Link to="/cita"  component={Button}>
+                Cita
+              </Link>
               
                 <Link to="/Medico" component={Button } color="silver">
                 Medicos
                  </Link>
-              
+                 <Link to="/especialidad" component={Button } color="silver">
+                Especialidad
+                 </Link>
                 
               <Link to="/Receta" component={Button}>
                 Recetas

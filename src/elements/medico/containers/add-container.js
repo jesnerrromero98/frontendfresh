@@ -13,12 +13,19 @@ export const AddMedicoContainer = (props) => {
 
     const [telefono, setTelefono] = useState('');
     const handleChangeTelefono = (e) => setTelefono(e.target.value);
-
+    
+    const [nombreEspecialidad, setnombreEspc] = useState('');
+    const handleChangenombreEspc = (e) => setnombreEspc(e.target.value);
+    const [idEspecialidad, setidEspecialidad] = useState('');
+    const handleChangeidespect = (e) => setidEspecialidad(e.target.value);
+    
     const handleClickGuardar = () => {
         const body = {
             idMedico: !idMedico ? 0 : Number(idMedico),
             nombre_Medico: nombre,
             telefono_Celular: telefono,
+            idEspecialidad:Number(idEspecialidad),
+            nombreEspecialidad:nombreEspecialidad,
             error: "",
         };
         console.log(body);
@@ -67,6 +74,10 @@ export const AddMedicoContainer = (props) => {
             onChangeNombre={handleChangeNombre}
             telefono={telefono}
             onChangeTelefono={handleChangeTelefono}
+            nombreEspecialidad={nombreEspecialidad}
+            onChangenombrespc={handleChangenombreEspc}
+            idEspecialidad={idEspecialidad}
+            onchangeIdespec={handleChangeidespect}
             onClickGuardar={handleClickGuardar}
             onClickEliminar={idMedico ? handleClickEliminar : null}
         />

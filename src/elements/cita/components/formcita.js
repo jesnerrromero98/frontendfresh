@@ -27,26 +27,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Formconsulta(props) {
+export default function Formcita(props) {
   const {
     onClickEliminar,
     accion,
-    fecha,
-    onChangeFecha,
-    hora,
-    onChangeHora,
-    sintoma,
-    onChangeSintoma,
-    diagnostico,
-    onChangeDiagnostico,
+    fechaCita,
+    onChangefecha,
+    horaDisponible,
+    onChangehoraDisp,
     nombres,
-    onChangePaciente,
+    onChangenombres,
     nombreMedico,
+    onChangenombMedico,
+    precio,
+    onChangeprecio,
+    tipo,
+    onChangetipo,
     idExpediente,
     onChangeIdexped,
     idMedico,
     onChangeIdmedico,
-    onChangeMedico,
     onClickGuardar,
   } = props;  
     
@@ -58,88 +58,60 @@ export default function Formconsulta(props) {
         <h1>{accion}</h1>
       <div>
         <TextField
-          id="fecha"
-          label="Fecha:"
+          id="fechaCita"
+          label="Fecha Cita"
           style={{ margin: 8 }}
-          placeholder="Fecha"
+          placeholder="Fecha cita"
           fullWidth
           margin="normal"
           InputLabelProps={{
             shrink: true,
           }}
           variant="filled"
-          value={fecha}
-          onChange={onChangeFecha}
+          value={fechaCita}
+          onChange={onChangefecha}
         />
          <TextField
-          id="hora"
-          label="Hora:"
+          id="horaDisponible"
+          label="Hora Disponible:"
           style={{ margin: 8 }}
-          placeholder="Hora"
+          placeholder="Hora Disponible"
           fullWidth
           margin="normal"
           InputLabelProps={{
             shrink: true,
           }}
           variant="filled"
-          value={hora}
-          onChange={onChangeHora}
+          value={horaDisponible}
+          onChange={onChangehoraDisp}
         />
         <TextField
-          id="sintoma"
-          label="Sintoma:"
+          id="precio"
+          label="Precio:"
           style={{ margin: 8 }}
-          placeholder="Sintoma"
+          placeholder="precio"
           fullWidth
           margin="normal"
           InputLabelProps={{
             shrink: true,
           }}
           variant="filled"
-          value={sintoma}
-          onChange={onChangeSintoma}
+          value={precio}
+          onChange={onChangeprecio}
         />
         <TextField
-          id="diagnostico"
-          label="Diagnostico:"
+          id="tipo"
+          label="Tipo:"
           style={{ margin: 8 }}
-          placeholder="Diagnostico"
+          placeholder="Tipo"
           fullWidth
           margin="normal"
           InputLabelProps={{
             shrink: true,
           }}
           variant="filled"
-          value={diagnostico}
-          onChange={onChangeDiagnostico}
-        />
-        <TextField
-          id="nombres"
-          label="Nombre Paciente:"
-          style={{ margin: 8 }}
-          placeholder="NombrePaciente"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-          value={nombres}
-          onChange={onChangePaciente}
-        />
-        <TextField
-          id="nombreMedico"
-          label="Nombre Medico:"
-          style={{ margin: 8 }}
-          placeholder="Nombre Medico:"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-          value={nombreMedico}
-          onChange={onChangeMedico}
+          value={tipo}
+          onChange={onChangetipo}
         />
         <TextField
           id="Idexpediente"
@@ -156,6 +128,20 @@ export default function Formconsulta(props) {
           onChange={onChangeIdexped}
         />
         <TextField
+          id="nombres"
+          label="Nombre Paciente:"
+          style={{ margin: 8 }}
+          placeholder="NombrePaciente"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="filled"
+          value={nombres}
+          onChange={onChangenombres}
+        />
+        <TextField
           id="idMedico"
           label="Id Medico:"
           style={{ margin: 8 }}
@@ -169,6 +155,20 @@ export default function Formconsulta(props) {
           value={idMedico}
           onChange={onChangeIdmedico}
         />
+        <TextField
+          id="nombreMedico"
+          label="Nombre Medico:"
+          style={{ margin: 8 }}
+          placeholder="Nombre Medico:"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="filled"
+          value={nombreMedico}
+          onChange={onChangenombMedico}
+        />
      
     </div>
     <div className={clas.root}>
@@ -180,7 +180,7 @@ export default function Formconsulta(props) {
         Agregar
       </Button>
                 <Link
-                    to="/consulta"
+                    to="/cita"
                     component={Button}
                     variant="contained"
                     color="secondary"
