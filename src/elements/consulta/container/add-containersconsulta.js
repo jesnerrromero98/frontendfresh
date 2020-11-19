@@ -1,4 +1,4 @@
-import React, {useState,} from 'react';
+import React, {useState,useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import Formconsulta from './../componentes/formconsulta';
 
@@ -19,20 +19,44 @@ export const AddConsulta= (props) => {
     
     const [diagnostico, setDiagnostico] = useState('');
     const handleChangeDiagnostico = (e) => setDiagnostico(e.target.value);
+    
+    const [idExpediente, setidExpediente] = useState('');
+    const handleChangeIdExped = (e) =>setidExpediente(e.target.value);
 
-    const [nombres, setPaciente] = useState('');
-    const handleChangePaciente = (e) =>setPaciente(e.target.value);
-    
-    const [nombreMedico, setMedico] = useState('');
-    const handleChangeMedico = (e) =>setMedico(e.target.value);
-    
-    const [idExpediente, setExpediente] = useState('');
-    const handleChangeIdExped = (e) =>setExpediente(e.target.value);
-
-    
     const [idMedico, setidmedico] = useState('');
     const handleChangeidmedico = (e) =>setidmedico(e.target.value);
 
+    const [expedientes, setExpedientes] = useState([]);
+
+    const [medicos, setMedicos] = useState([]);
+
+    const getMedicos = () => {
+        fetch(`${URL_API}/Medico`)
+        .then(res => res.json())
+        .then(data => {
+            setMedicos(data);
+            console.log(data);
+        })
+        .catch(error => console.log("Error: ", error));
+    };
+
+    useEffect(() => {
+        getMedicos();
+    }, []);
+    
+    const getExpedientes = () => {
+        fetch(`${URL_API}/Expediente`)
+        .then(res => res.json())
+        .then(data => {
+            setExpedientes(data);
+            console.log(data);
+        })
+        .catch(error => console.log("Error: ", error));
+    };
+
+    useEffect(() => {
+        getExpedientes();
+    }, []);
 
     const handleClickGuardar = () => {
        
@@ -42,8 +66,6 @@ export const AddConsulta= (props) => {
             hora: hora,
             sintoma:sintoma,
             diagnostico:diagnostico,   
-            nombres:nombres,
-            nombreMedico:nombreMedico,
             idExpediente: Number(idExpediente),
             idMedico: Number(idMedico),
             error: "",
@@ -88,7 +110,7 @@ export const AddConsulta= (props) => {
     console.log("idConsulta: ", idConsulta);
     return (
         <Formconsulta
-        accion={!idConsulta ?'Nueva Consulta': `Editar COnsulta ${idConsulta}`}
+        accion={!idConsulta ?'Nueva Consulta': `Editar Consulta ${idConsulta}`}
             
             fecha={fecha}
             onChangeFecha={handleChangeFecha}
@@ -101,13 +123,7 @@ export const AddConsulta= (props) => {
             
             diagnostico={diagnostico}
             onChangeDiagnostico={handleChangeDiagnostico}
-
-            nombres={nombres}
-            onChangePaciente={handleChangePaciente}
-
-            nombreMedico={nombreMedico}
-            onChangeMedico={handleChangeMedico}
-
+       
             idExpediente={idExpediente}
             onChangeIdexped={handleChangeIdExped}
 
@@ -116,6 +132,9 @@ export const AddConsulta= (props) => {
                      
             onClickGuardar={handleClickGuardar}
             onClickEliminar={idConsulta ? handleClickEliminar : null}
+
+            expedientes={expedientes}
+            medicos={medicos}
         />
     );
 };

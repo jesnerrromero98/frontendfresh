@@ -11,7 +11,7 @@ export const ListContainer = () => {
         .then(res => res.json())
         .then(data => {
             setConsulta(data);
-            console.log(data);
+            console.log("Consultas: ", data);
         })
         .catch(error => console.log("Error: ", error));
     };

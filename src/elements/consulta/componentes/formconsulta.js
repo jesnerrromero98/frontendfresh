@@ -3,6 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";;
 
 const useStyl = makeStyles((theme) => ({
   root: {
@@ -12,6 +17,15 @@ const useStyl = makeStyles((theme) => ({
   },
 }));
 
+const useSty = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: '100%'
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  }
+}));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,19 +53,24 @@ export default function Formconsulta(props) {
     onChangeSintoma,
     diagnostico,
     onChangeDiagnostico,
-    nombres,
-    onChangePaciente,
-    nombreMedico,
     idExpediente,
     onChangeIdexped,
     idMedico,
     onChangeIdmedico,
-    onChangeMedico,
     onClickGuardar,
+    expedientes,
+    medicos
   } = props;  
     
   const classes = useStyles();
   const clas = useStyl();
+  
+  const cla = useSty();
+  const [ setAge] = React.useState("");
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
     
   return (
     <div className={classes.root}>
@@ -113,63 +132,37 @@ export default function Formconsulta(props) {
           value={diagnostico}
           onChange={onChangeDiagnostico}
         />
-        <TextField
-          id="nombres"
-          label="Nombre Paciente:"
-          style={{ margin: 8 }}
-          placeholder="NombrePaciente"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-          value={nombres}
-          onChange={onChangePaciente}
-        />
-        <TextField
-          id="nombreMedico"
-          label="Nombre Medico:"
-          style={{ margin: 8 }}
-          placeholder="Nombre Medico:"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-          value={nombreMedico}
-          onChange={onChangeMedico}
-        />
-        <TextField
-          id="Idexpediente"
-          label="Id Expediente:"
-          style={{ margin: 8 }}
-          placeholder="Id Expediente"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-          value={idExpediente}
-          onChange={onChangeIdexped}
-        />
-        <TextField
-          id="idMedico"
-          label="Id Medico:"
-          style={{ margin: 8 }}
-          placeholder="Id Medico:"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-          value={idMedico}
-          onChange={onChangeIdmedico}
-        />
-     
+
+     <div>
+        <FormControl className={cla.formControl}>
+          <InputLabel id="expediente-label">Expediente</InputLabel>
+          <Select
+            id="expediente-label"
+            value={idExpediente}
+            onChange={onChangeIdexped}
+          >
+            <MenuItem>--Seleccionar Expediente--</MenuItem>
+            {expedientes && expedientes.map(item => (
+              <MenuItem value={item.idExpediente}>{item.nombres}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+    </div>
+    <div>
+        <FormControl className={cla.formControl}>
+          <InputLabel id="Medico-label">Medico</InputLabel>
+          <Select
+            id="Medico-label"
+            value={idMedico}
+            onChange={onChangeIdmedico}
+          >
+            <MenuItem>--Seleccionar Medico--</MenuItem>
+            {medicos && medicos.map(item => (
+              <MenuItem value={item.idMedico}>{item.nombreMedico}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+    </div> 
     </div>
     <div className={clas.root}>
     <Button

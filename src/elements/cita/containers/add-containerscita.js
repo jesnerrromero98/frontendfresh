@@ -1,4 +1,4 @@
-import React, {useState,} from 'react';
+import {React, useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import Formcita from './../components/formcita';
 
@@ -25,17 +25,42 @@ export const AddCita= (props) => {
     
     const [idMedico, setidmedico] = useState('');
     const handleChangeidmedico = (e) =>setidmedico(e.target.value);
- 
-   
-    const [nombres, setnombres] = useState('');
-    const handleChangenombres = (e) =>setnombres(e.target.value);
-   
-    const [nombreMedico, setnombreMedico] = useState('');
-    const handleChangenombreMedico = (e) =>setnombreMedico(e.target.value);
-   
 
-    const handleClickGuardar = () => {
-       
+    const [expedientes, setExpedientes] = useState([]);
+
+    const [medicos, setMedicos] = useState([]);
+
+    const getMedicos = () => {
+        fetch(`${URL_API}/Medico`)
+        .then(res => res.json())
+        .then(data => {
+            setMedicos(data);
+            console.log(data);
+        })
+        .catch(error => console.log("Error: ", error));
+    };
+
+    useEffect(() => {
+        getMedicos();
+    }, []);
+    
+    const getExpedientes = () => {
+        fetch(`${URL_API}/Expediente`)
+        .then(res => res.json())
+        .then(data => {
+            setExpedientes(data);
+            console.log(data);
+        })
+        .catch(error => console.log("Error: ", error));
+    };
+
+    useEffect(() => {
+        getExpedientes();
+    }, []);
+
+    
+
+    const handleClickGuardar = () => {       
         const body={
             idCita: !idCita ? 0: Number(idCita),
             fechaCita: fechaCita,
@@ -43,9 +68,7 @@ export const AddCita= (props) => {
             precio:precio,
             tipo:tipo,   
             idExpediente: Number(idExpediente),
-            nombres:nombres,
             idMedico: Number(idMedico),
-            nombreMedico:nombreMedico,
             error: "",
 
         };
@@ -105,14 +128,15 @@ export const AddCita= (props) => {
 
             idExpediente={idExpediente}
             onChangeIdexped={handleChangeIdExped}
-            nombres={nombres}
-            onChangenombres={handleChangenombres}
-            nombreMedico={nombreMedico}
-            onChangenombMedico={nombreMedico}
+
             idMedico={idMedico}
             onChangeIdmedico={handleChangeidmedico}
+            
             onClickGuardar={handleClickGuardar}
             onClickEliminar={idCita ? handleClickEliminar : null}
+            
+            expedientes={expedientes}
+            medicos={medicos}
         />
     );
 };

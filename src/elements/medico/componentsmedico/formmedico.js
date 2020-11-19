@@ -3,6 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const useStyl = makeStyles((theme) => ({
   root: {
@@ -10,6 +15,16 @@ const useStyl = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+}));
+
+const useSty = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: '100%'
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  }
 }));
 
 
@@ -29,6 +44,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Formedico(props) {
 
+  const cla = useSty();
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
+
   const {
     onClickEliminar,
     accion,
@@ -36,11 +59,10 @@ export default function Formedico(props) {
     onChangeNombre,
     telefono,
     onChangeTelefono,
-    nombreEspecialidad,
     idEspecialidad,
     onchangeIdespec,
-    onChangenombrespc,
     onClickGuardar,
+    especialidades,
   } = props;
     
   const classes = useStyles();
@@ -51,7 +73,7 @@ export default function Formedico(props) {
         <h1>{accion}</h1>
       <div>
         <TextField
-          id="nombre_Medico"
+          id="nombreMedico"
           label="NombreMedico:"
           style={{ margin: 8 }}
           placeholder="Nombre"
@@ -64,7 +86,7 @@ export default function Formedico(props) {
           value={nombre}
           onChange={onChangeNombre}
         />
-         <TextField
+        <TextField
           id="telefono_Celular"
           label="Telefono_Celular:"
           style={{ margin: 8 }}
@@ -77,35 +99,22 @@ export default function Formedico(props) {
           variant="filled"
           value={telefono}
           onChange={onChangeTelefono}
-     />   
-     <TextField
-          id="idEspecialidad"
-          label="Id Especialidad"
-          style={{ margin: 8 }}
-          placeholder="Id Especialidad"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-          value={idEspecialidad}
-          onChange={onchangeIdespec}
-        />
-     <TextField
-          id="nombreEspecialidad"
-          label="Nombre Especialidad:"
-          style={{ margin: 8 }}
-          placeholder="Nombre Especialidad"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-          value={nombreEspecialidad}
-          onChange={onChangenombrespc}
-        />
+        />   
+        <div>
+          <FormControl className={cla.formControl}>
+            <InputLabel id="medico-label">Age</InputLabel>
+            <Select
+              id="demmedico-label"
+              value={idEspecialidad}
+              onChange={onchangeIdespec}
+            >
+              <MenuItem>--Seleccionar Especialidad--</MenuItem>
+              {especialidades && especialidades.map(item => (
+                <MenuItem value={item.idEspecialidad}>{item.nombreEspecialidad}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
     </div>
     <div className={clas.root}>
       <Button
@@ -134,7 +143,6 @@ export default function Formedico(props) {
       )}
     </div>
     </div>
-    
     
   );
 
